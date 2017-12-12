@@ -1,0 +1,14 @@
+Page:
+- IA Création: Création d'une IA, selection des moneys sur lequel elle va agir, upload d'un fichier javascript comportant le comportement de l'IA et implémentant des fonctions de base.
+- IA Resultat:Trier les résultats d'une IA par money et afficher les résultats par jours, semaine, mois. Zoom et dézoom du graphique via molette de la souris.
+              Pouvoir voir sur la courbe de la moneys les instants ou les achats et vente on été faits.
+- Versus IA: Affichage des courbes de résultat au cours du temps de plusieurs IA sur une même money. (les courbes sont superposés sur le même graphique). 
+- Liste Moneys: Accéder a la liste des money et des IA en lien avec cette money et un apperçu rappide de leur performance en %
+- Profile Money: Accede a la courbe d'achat vente d'une money et afficher les résultats par jours, semaine, mois.Zoom et dézoom du graphique via molette de la souris.
+
+Design:
+-Liste Moneys (prioritaire)
+Scroll Vertical ou chaque ligne représente une IA avec ses information : nom, type d'IA, perf global(vert ou rouge), nb de marché, créateur, date de création. un option button permettant nottament de renommer l'IA ou de la supprimer.
+Un button permettant de trier les IA par date de création, nom, indice de perf (2 sens). ( a définir niveau design)
+On peut ajouter une IA, à partir d'une liste d'IA existante, grâce partir d'un '+'. ( a définir niveau design)
+Le click sur le bouton '+' fait apparaitre une pop up (pas de changement de page) ou l'utilisateur doit remplir les infos: nom de l'IA, choix de l'IA, cocher les marché sur lequel agira l'IA, etc ...
