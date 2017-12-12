@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Trades</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font: 13px Helvetica, Arial; }
+        form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+        form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+        form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+        #messages { list-style-type: none; margin: 0; padding: 0; }
+        #messages li { padding: 5px 10px; }
+        #messages li:nth-child(odd) { background: #eee; }
+        .red{
+            background-color: red;
+        }
+        .green{
+            background-color: green;
+        }
+        #trades {
+            overflow-x:hidden;
+            overflow-y:hidden;
+            height:500px;
+        }
+    </style>
+  </head>
+  <body>
+
+    <h1>BTCUSD trades</h1>
+    <ul id="trades">
+
+    </ul>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        var socket = io();
+
+
+
+        socket.on('trade', function(trade){
+            console.log(trade)
+            var amount = trade.amount.toString()
+            if (amount.substring(0,1) == '-') {
+                    $('#trades').prepend($('<li class="red">').text( convertTimestampToDate(trade.timestamp) + " :: "+ trade.price/1000 + " :: "+ trade.amount ));               
+            } else {
+                    $('#trades').prepend($('<li class="green">').text( convertTimestampToDate(trade.timestamp) + " :: "+ trade.price/1000 + " :: "+ trade.amount ));      
+            }
+        });
+
+        function convertTimestampToDate(timestamp) {
+            var date = new Date(timestamp*1000);
+            var hours = date.getHours();
+            var minutes = "0" + date.getMinutes();
+            var seconds = "0" + date.getSeconds();
+            return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+        }
+
+    </script>
+  </body>
+</html>
